@@ -9,13 +9,11 @@ const JUMP_SPEED = 500
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
-	if is_on_floor():
+	if velocity.x != 0:
 		$PlayerSprite.animation = "walk"
-		$PlayerSprite.flip_v = false
 		$PlayerSprite.flip_h = velocity.x < 0
 	elif velocity.y > 0:
 		$PlayerSprite.animation = "up"
-		$PlayerSprite.flip_v = velocity.y > 0
 
 
 	# Horizontal movement code. First, get the player's input.
