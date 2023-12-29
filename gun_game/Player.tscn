@@ -32,8 +32,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="2"]
-radius = 9.0
-height = 18.0
+radius = 28.0
+height = 66.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(235, 308)
@@ -42,7 +42,8 @@ script = ExtResource("3")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("1")
-animation = &"walk"
+animation = &"up"
+frame_progress = 0.654781
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("2")
