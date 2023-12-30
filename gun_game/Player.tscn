@@ -4,7 +4,22 @@
 [ext_resource type="Script" path="res://Player.gd" id="3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1ujr"]
-size = Vector2(21.5, 37.5)
+size = Vector2(28, 33)
+
+[sub_resource type="Animation" id="Animation_yj4f2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
 
 [sub_resource type="Animation" id="Animation_pc6wr"]
 resource_name = "walk"
@@ -22,21 +37,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 
-[sub_resource type="Animation" id="Animation_yj4f2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1jd1q"]
 _data = {
 "RESET": SubResource("Animation_yj4f2"),
@@ -51,12 +51,14 @@ script = ExtResource("3")
 position = Vector2(2, 3)
 texture = ExtResource("2_s8mic")
 hframes = 12
+frame = 11
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(3.75, -5.75)
+position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_s1ujr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
