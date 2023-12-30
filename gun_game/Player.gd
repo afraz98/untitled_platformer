@@ -1,21 +1,23 @@
 class_name Player extends CharacterBody2D
 
-
 const WALK_FORCE = 600
 const WALK_MAX_SPEED = 200
 const STOP_FORCE = 1300
 const JUMP_SPEED = 500
 
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var _animation_player = $AnimationPlayer
 
 func _physics_process(delta):
+
+	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
+		_animation_player.play("walk")
+	else:
+		_animation_player.stop()
+	
 	if velocity.x != 0:
-		$PlayerSprite.animation = "walk"
 		$PlayerSprite.flip_h = velocity.x < 0
-	elif velocity.y > 0:
-		$PlayerSprite.animation = "up"
-
-
+	
 	# Horizontal movement code. First, get the player's input.
 	var walk = WALK_FORCE * (Input.get_axis(&"move_left", &"move_right"))
 	
