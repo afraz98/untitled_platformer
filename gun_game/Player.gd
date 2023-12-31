@@ -10,8 +10,13 @@ const JUMP_SPEED = 500
 
 func _physics_process(delta):
 
-	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
-		_animation_player.play("walk")
+	if Input.is_action_pressed("jump") or velocity.y != 0:
+		_animation_player.play("jump")
+	elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
+		if Input.is_action_pressed("crouch"):
+			_animation_player.play("crouch")
+		else:
+			_animation_player.play("walk")
 	else:
 		_animation_player.stop()
 	
