@@ -59,6 +59,7 @@ shape = SubResource("RectangleShape2D_s1ujr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+limit_left = -10000006
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
