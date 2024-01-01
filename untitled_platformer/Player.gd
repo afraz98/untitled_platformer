@@ -8,18 +8,20 @@ const JUMP_SPEED = 500
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var _animation_player = $AnimationPlayer
 
-func _physics_process(delta):
-
-	if Input.is_action_pressed("jump") or velocity.y != 0:
-		_animation_player.play("jump")
-	elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
-		if Input.is_action_pressed("crouch"):
-			_animation_player.play("crouch")
-		else:
-			_animation_player.play("walk")
+func get_new_animation():
+	if velocity.y == 0.0:
+		if velocity.x != 0.0:
+			return "walk"
+		return "idle"
 	else:
-		_animation_player.stop()
-	
+		if velocity.y > 0.0:
+			return "fall"
+		return "jump"
+	return "idle" # By default return the idle animation
+
+func _physics_process(delta):
+	_animation_player.play(get_new_animation())
+		
 	if velocity.x != 0:
 		$PlayerSprite.flip_h = velocity.x < 0
 	
