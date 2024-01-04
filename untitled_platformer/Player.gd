@@ -9,7 +9,11 @@ const JUMP_SPEED = 500
 @onready var _animation_player = $AnimationPlayer
 
 func get_new_animation():
-	if velocity.y == 0.0:
+	if is_on_floor():
+		if Input.is_action_pressed("crouch"):
+			if velocity.x != 0.0:
+				return "crouch_walk"
+			return "crouch"
 		if velocity.x != 0.0:
 			return "walk"
 		return "idle"
