@@ -27,6 +27,8 @@ func get_new_animation():
 			return "walk"
 		return "idle"
 	else:
+		if velocity.x != 0.0:
+			return "stride"
 		if velocity.y > 0.0:
 			return "fall"
 		return "jump"
