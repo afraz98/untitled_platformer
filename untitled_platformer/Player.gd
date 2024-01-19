@@ -46,7 +46,8 @@ func update_hitbox():
 func _physics_process(delta):
 	_animation_player.play(get_new_animation())
 	update_hitbox()
-		
+
+	# Flip sprite if moving left		
 	if velocity.x != 0:
 		$PlayerSprite.flip_h = velocity.x < 0
 
