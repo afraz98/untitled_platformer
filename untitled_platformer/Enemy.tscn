@@ -26,6 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5u4hm"]
 resource_name = "walk"
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -47,12 +48,13 @@ _data = {
 }
 
 [node name="Enemy" type="CharacterBody2D"]
+position = Vector2(-6, 3)
 script = ExtResource("1_8l3b1")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_ut1px")
 hframes = 12
-vframes = 3
+vframes = 4
 
 [node name="EnemyHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(4, -1)

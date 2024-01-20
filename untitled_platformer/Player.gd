@@ -10,14 +10,15 @@ const STOP_FORCE = 1300
 const JUMP_SPEED = 500
 
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@onready var _animation_player = $AnimationPlayer
 
 func is_crouching():
 	if Input.is_action_pressed("crouch"):
 		return true
 	return false
 
-func get_new_animation():
+func get_new_animation(is_shooting):
+	if is_shooting:
+		return "shoot"
 	if is_on_floor():
 		if Input.is_action_pressed("crouch"):
 			if velocity.x != 0.0:
@@ -34,6 +35,9 @@ func get_new_animation():
 		return "jump"
 	return "idle" # By default return the idle animation
 
+func shoot():
+	pass
+
 func update_hitbox():
 	if is_crouching():
 		$PlayerHitbox.disabled = true
@@ -44,9 +48,6 @@ func update_hitbox():
 	pass
 
 func _physics_process(delta):
-	_animation_player.play(get_new_animation())
-	update_hitbox()
-
 	# Flip sprite if moving left		
 	if velocity.x != 0:
 		$PlayerSprite.flip_h = velocity.x < 0
@@ -87,4 +88,17 @@ func _physics_process(delta):
 	# Check for jumping. is_on_floor() must be called after movement code.
 	if is_on_floor() and Input.is_action_just_pressed(&"jump"):
 		velocity.y = -JUMP_SPEED
+
+	var is_shooting := false
+	if Input.is_action_just_pressed("shoot"):
+		is_shooting = $Gun.shoot()
+
+	var animation = get_new_animation(is_shooting)
+	if animation != $AnimationPlayer.current_animation and $Timer.is_stopped():
+		if is_shooting:
+			$Timer.start()
+		$AnimationPlayer.play(animation)
+
+	update_hitbox()
+
 

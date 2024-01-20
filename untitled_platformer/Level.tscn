@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2mrdlb84o3iq"]
+[gd_scene load_steps=8 format=3 uid="uid://c2mrdlb84o3iq"]
 
 [ext_resource type="PackedScene" uid="uid://bh1ng7g7y3qmd" path="res://Player.tscn" id="1_icr3l"]
 [ext_resource type="Script" path="res://Level.gd" id="1_kyvmd"]
 [ext_resource type="Texture2D" uid="uid://cbkwyfib16805" path="res://assets/art/tile_sheet.png" id="2_xte3l"]
 [ext_resource type="PackedScene" uid="uid://c6e2cnn8ir5lp" path="res://Enemy.tscn" id="4_2kdyc"]
+[ext_resource type="PackedScene" uid="uid://bnq40jgfifkl8" path="res://StationaryEnemy.tscn" id="5_y6gvg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oamw5"]
 texture = ExtResource("2_xte3l")
@@ -126,7 +127,11 @@ layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(1245185, 5, 3, 1835021, 131077, 4, 1835011, 65541, 4, 1638415, 5, 4, 1638414, 5, 4, 1638413, 5, 4, 1638412, 5, 4, 1638411, 5, 4, 1638410, 5, 4, 1638409, 5, 4, 1638408, 5, 4, 1638407, 5, 4, 1638406, 5, 4, 1638405, 5, 4, 1638404, 5, 4, 1638403, 5, 4, 1638402, 5, 4, 1638401, 5, 4, 1835027, 131077, 4, 1835028, 65541, 4, 1835022, 65541, 4, 1835010, 131077, 4, 1114118, 131077, 4, 1114119, 65541, 4, 1245199, 65541, 3, 1835009, 131077, 3, 1835051, 196613, 3, 1441835, 196613, 3, 1638417, 131077, 3, 1245201, 131077, 3, 1835008, 5, 1, 1769472, 5, 1, 1703936, 5, 1, 1638400, 5, 1, 1572864, 5, 1, 1507328, 5, 1, 1441792, 5, 1, 1376256, 5, 1, 1310720, 5, 1, 1245184, 5, 1, 1638416, 5, 1, 1572880, 5, 1, 1507344, 5, 1, 1441808, 5, 1, 1376272, 5, 1, 1310736, 5, 1, 1245200, 5, 1, 1179664, 5, 1, 1835052, 5, 1, 1769516, 5, 1, 1703980, 5, 1, 1638444, 5, 1, 1572908, 5, 1, 1507372, 5, 1, 1441836, 5, 1, 1376300, 5, 1, 1835039, 196613, 3, 1835038, 131077, 3, 1769502, 5, 3, 1769503, 65541, 3, 1703966, 5, 1, 1703967, 5, 1, 1900574, 5, 1, 1900575, 5, 1, 1900576, 5, 1, 1900573, 5, 1, 1703965, 5, 1, 1703968, 5, 1, 1769504, 5, 3, 1835040, 131077, 3, 1769501, 65541, 3, 1835037, 196613, 3, 1507334, 5, 7, 1572870, 65541, 7, 1572871, 196613, 7, 1572869, 131077, 7)
 
 [node name="Player" parent="." instance=ExtResource("1_icr3l")]
-position = Vector2(136, 385)
+position = Vector2(132, 442)
 
 [node name="Enemy" parent="." instance=ExtResource("4_2kdyc")]
 position = Vector2(217, 270)
+
+[node name="StationaryEnemy" parent="." instance=ExtResource("5_y6gvg")]
+position = Vector2(340, 305)
+scale = Vector2(0.9, 0.9)
