@@ -3,15 +3,16 @@ class_name StationaryEnemy extends Enemy
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	walking_direction = -1.0
-	# velocity.x = -WALK_MAX_SPEED
+	_state = STATE.IDLE
 	pass
 
 func get_new_animation():
-	return "idle"
-
+	if _state == STATE.IDLE:
+		return "idle"
+	return "death"
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	_animation_player.play(get_new_animation())
 
 	if is_on_wall():
 		velocity.x = -velocity.x
@@ -28,4 +29,12 @@ func _physics_process(delta):
 
 	# Move based on the velocity and snap to the ground.
 	move_and_slide()
+
+	var animation = get_new_animation()
+	if animation != _animation_player.current_animation:
+		_animation_player.play(animation)
 	pass
+
+
+func _on_area_2d_area_entered(area):
+	print("area entered")

@@ -7,7 +7,7 @@ class_name Enemy extends CharacterBody2D
 const WALK_FORCE = 600
 
 # Maximum x velocity while walking
-const WALK_MAX_SPEED = 200
+const WALK_MAX_SPEED = 150
 
 # Crouching acceleration
 const CROUCH_FORCE = 300
@@ -27,19 +27,35 @@ const MAXIMUM_X_DISTANCE = 100
 
 var walking_direction = 0
 var initial_position_x = 0
+var _state := STATE.PATROLLING
+
+enum STATE {
+	IDLE,
+	PATROLLING,
+	DEAD
+}
+
+func get_new_animation():
+	if _state == STATE.PATROLLING:
+		return "walk"
+	return "death"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	walking_direction = -1.0
+	_state = STATE.PATROLLING
 	velocity.x = -WALK_MAX_SPEED
 	pass
 
-func get_new_animation():
-	return "walk"
-
+func destroy() -> void:
+	velocity = Vector2.ZERO
+	_state = STATE.DEAD
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	_animation_player.play(get_new_animation())
+	if not $FloorDetectorLeft.is_colliding():
+		velocity.x = -WALK_MAX_SPEED
+	elif not $FloorDetectorRight.is_colliding():
+		velocity.x = WALK_MAX_SPEED
 
 	if is_on_wall():
 		velocity.x = -velocity.x
@@ -56,4 +72,8 @@ func _physics_process(delta):
 
 	# Move based on the velocity and snap to the ground.
 	move_and_slide()
+	
+	var animation = get_new_animation()
+	if animation != _animation_player.current_animation:
+		_animation_player.play(animation)
 	pass

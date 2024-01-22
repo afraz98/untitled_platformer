@@ -48,10 +48,12 @@ func update_hitbox():
 	pass
 
 func _physics_process(delta):
-	# Flip sprite if moving left		
-	if velocity.x != 0:
-		$PlayerSprite.flip_h = velocity.x < 0
-
+	# Flip sprite if moving left
+	if velocity.x < 0:
+		$PlayerSprite.scale.x = -1.0
+	elif velocity.x > 0:
+		$PlayerSprite.scale.x = 1.0
+	
 	if is_crouching(): # Player should move at half speed if crouched
 		# Horizontal movement code. First, get the player's input.
 		var walk = CROUCH_FORCE * (Input.get_axis(&"move_left", &"move_right"))
@@ -91,7 +93,7 @@ func _physics_process(delta):
 
 	var is_shooting := false
 	if Input.is_action_just_pressed("shoot"):
-		is_shooting = $Gun.shoot()
+		is_shooting = $PlayerSprite.get_node(^"Gun").shoot($PlayerSprite.scale.x)
 
 	var animation = get_new_animation(is_shooting)
 	if animation != $AnimationPlayer.current_animation and $Timer.is_stopped():

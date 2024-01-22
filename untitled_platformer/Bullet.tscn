@@ -1,15 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgyiwnps7q0sy"]
+[gd_scene load_steps=5 format=3 uid="uid://dgyiwnps7q0sy"]
 
 [ext_resource type="Script" path="res://Bullet.gd" id="1_kecw5"]
 [ext_resource type="Texture2D" uid="uid://catvky1bscj0h" path="res://assets/art/bullet.png" id="2_ps07o"]
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2v0ao"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgbh2"]
-size = Vector2(7, 7)
+size = Vector2(9, 7)
 
 [node name="Bullet" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 3
+continuous_cd = 2
+max_contacts_reported = 4
+contact_monitor = true
 script = ExtResource("1_kecw5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2v0ao")
+}
 
 [node name="BulletSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_ps07o")
@@ -17,3 +27,5 @@ texture = ExtResource("2_ps07o")
 [node name="BulletHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_rgbh2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

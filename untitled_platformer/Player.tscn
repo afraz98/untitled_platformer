@@ -193,6 +193,8 @@ position = Vector2(15, -6)
 script = ExtResource("3_hg62v")
 
 [node name="CooldownTimer" type="Timer" parent="PlayerSprite/Gun"]
+wait_time = 0.4
+one_shot = true
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(1, -0.5)
