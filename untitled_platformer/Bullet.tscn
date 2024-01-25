@@ -11,6 +11,8 @@ size = Vector2(9, 7)
 [node name="Bullet" type="RigidBody2D"]
 collision_layer = 0
 collision_mask = 3
+mass = 0.01
+gravity_scale = 0.0
 continuous_cd = 2
 max_contacts_reported = 4
 contact_monitor = true

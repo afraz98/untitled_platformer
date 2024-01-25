@@ -95,6 +95,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("shoot"):
 		is_shooting = $PlayerSprite.get_node(^"Gun").shoot($PlayerSprite.scale.x)
 
+	var is_reloading := false
+	if Input.is_action_just_pressed("reload"):
+		is_reloading = $PlayerSprite.get_node(^"Gun").reload()
+	
 	var animation = get_new_animation(is_shooting)
 	if animation != $AnimationPlayer.current_animation and $Timer.is_stopped():
 		if is_shooting:

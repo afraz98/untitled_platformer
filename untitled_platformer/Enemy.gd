@@ -29,11 +29,7 @@ var walking_direction = 0
 var initial_position_x = 0
 var _state := STATE.PATROLLING
 
-enum STATE {
-	IDLE,
-	PATROLLING,
-	DEAD
-}
+enum STATE { IDLE, PATROLLING, DEAD }
 
 func get_new_animation():
 	if _state == STATE.PATROLLING:
@@ -49,18 +45,21 @@ func _ready():
 func destroy() -> void:
 	velocity = Vector2.ZERO
 	_state = STATE.DEAD
+	self.set_collision_mask_value(3, false)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if not $FloorDetectorLeft.is_colliding():
+		print("!")
 		velocity.x = -WALK_MAX_SPEED
 	elif not $FloorDetectorRight.is_colliding():
+		print("!")
 		velocity.x = WALK_MAX_SPEED
 
 	if is_on_wall():
 		velocity.x = -velocity.x
 	
-	# Flip sprite if moving left		
+	# Flip sprite if moving left
 	if velocity.x != 0:
 		$EnemySprite.flip_h = velocity.x > 0
 
@@ -72,7 +71,7 @@ func _physics_process(delta):
 
 	# Move based on the velocity and snap to the ground.
 	move_and_slide()
-	
+
 	var animation = get_new_animation()
 	if animation != _animation_player.current_animation:
 		_animation_player.play(animation)
