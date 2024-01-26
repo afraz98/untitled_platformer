@@ -12,15 +12,27 @@ func _ready():
 	pass
 
 func reload() -> bool:
+	if not $ReloadTimer.is_stopped():
+		# In the middle of a reload already -- cannot reload.
+		return false
+	$ReloadTimer.start()
+	ammo = PISTOL_MAGANIZE_CAPACITY
 	return true
 
 func shoot(direction: float) -> bool:
 	if ammo == 0:
-		print("Out of ammo!")
+		# TODO: Probably best to play some form of sound effect
+		# indicating the player is out of ammo.
 		return false
 	
 	if not $CooldownTimer.is_stopped():
+		# Already shooting -- wait for cooldown to elapse.
 		return false
+		
+	if not $ReloadTimer.is_stopped():
+		# In the middle of reloading -- should not be able to shoot.
+		return false
+	
 	var bullet := Bullet.instantiate() as Bullet
 		
 	bullet.global_position = global_position
