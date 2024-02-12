@@ -10,9 +10,9 @@ config_version=5
 
 [application]
 
-config/name="untitled_platformer"
+config/name="guun"
 config/tags=PackedStringArray("2d", "physics", "platformer", "tilemap")
-run/main_scene="res://Level.tscn"
+run/main_scene="res://SinglePlayerGame.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
@@ -20,6 +20,8 @@ config/icon="res://icon.png"
 
 window/size/viewport_width=720
 window/size/viewport_height=480
+window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 
 [gui]
 

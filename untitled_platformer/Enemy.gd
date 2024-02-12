@@ -21,10 +21,6 @@ const STOP_FORCE = 1300
 # Maximum y velocity while jumping
 const JUMP_SPEED = 500
 
-# Maximum distance away from its initial position
-# that the enemy is allowed to move
-const MAXIMUM_X_DISTANCE = 100
-
 var walking_direction = 0
 var initial_position_x = 0
 var _state := STATE.PATROLLING
@@ -45,15 +41,14 @@ func _ready():
 func destroy() -> void:
 	velocity = Vector2.ZERO
 	_state = STATE.DEAD
+	self.set_collision_mask_value(2, false)
 	self.set_collision_mask_value(3, false)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if not $FloorDetectorLeft.is_colliding():
-		print("!")
 		velocity.x = -WALK_MAX_SPEED
 	elif not $FloorDetectorRight.is_colliding():
-		print("!")
 		velocity.x = WALK_MAX_SPEED
 
 	if is_on_wall():

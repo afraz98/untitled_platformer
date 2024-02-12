@@ -99,7 +99,7 @@ script = ExtResource("1_8l3b1")
 [node name="EnemySprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_ut1px")
 hframes = 12
-vframes = 4
+vframes = 7
 
 [node name="EnemyHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(4, -1)

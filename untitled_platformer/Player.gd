@@ -7,7 +7,7 @@ const CROUCH_FORCE = 300
 const CROUCH_MAX_SPEED = 100
 
 const STOP_FORCE = 1300
-const JUMP_SPEED = 500
+const JUMP_SPEED = 250 
 
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -16,16 +16,21 @@ func is_crouching():
 		return true
 	return false
 
-func get_new_animation(is_shooting, is_reloading):
+func get_new_upper_animation(is_shooting, is_reloading):
 	if is_shooting:
 		return "shoot"
 	if is_reloading:
 		return "reload"
+	if velocity.x != 0.0:
+			return "walk"
+	return "idle" # By default return the idle animation
+	
+func get_new_lower_animation():
 	if is_on_floor():
-		if Input.is_action_pressed("crouch"):
-			if velocity.x != 0.0:
-				return "crouch_walk"
-			return "crouch"
+		# if Input.is_action_pressed("crouch"):
+		#	if velocity.x != 0.0:
+		#		return "crouch_walk"
+		#	return "crouch"
 		if velocity.x != 0.0:
 			return "walk"
 		return "idle"
@@ -49,9 +54,13 @@ func update_hitbox():
 func _physics_process(delta):
 	# Flip sprite if moving left
 	if velocity.x < 0:
-		$PlayerSprite.scale.x = -1.0
+		$UpperBody.scale.x = -1.0
+		$UpperBody.position.x = 9 # Make upper body "snap" to lower body
+		$LowerBody.scale.x = -1.0
 	elif velocity.x > 0:
-		$PlayerSprite.scale.x = 1.0
+		$UpperBody.scale.x = 1.0
+		$UpperBody.position.x = 3 # Make upper body "snap" to lower body
+		$LowerBody.scale.x = 1.0
 	
 	if is_crouching(): # Player should move at half speed if crouched
 		# Horizontal movement code. First, get the player's input.
@@ -92,22 +101,14 @@ func _physics_process(delta):
 
 	var is_shooting := false
 	if Input.is_action_just_pressed("shoot"):
-		is_shooting = $PlayerSprite.get_node(^"Gun").shoot($PlayerSprite.scale.x)
+		is_shooting = $UpperBody.get_node(^"Gun").shoot($UpperBody.scale.x)
 
 	var is_reloading := false
 	if Input.is_action_just_pressed("reload"):
-		is_reloading = $PlayerSprite.get_node(^"Gun").reload()
+		is_reloading = $UpperBody.get_node(^"Gun").reload()
 	
-	var animation = get_new_animation(is_shooting, is_reloading)
-	if animation != $AnimationPlayer.current_animation and $Timer.is_stopped():
-		if is_shooting:
-			$Timer.wait_time = 0.4
-			$Timer.start()
-		if is_reloading:
-			$Timer.wait_time = 1.2
-			$Timer.start()
-		$AnimationPlayer.play(animation)
-
+	$UpperBody.play_animation(get_new_upper_animation(is_shooting, is_reloading), is_shooting, is_reloading)
+	$LowerBody.play_animation(get_new_lower_animation())
 	update_hitbox()
 
 
