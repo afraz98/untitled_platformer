@@ -12,8 +12,9 @@ const JUMP_SPEED = 250
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func is_crouching():
-	if Input.is_action_pressed("crouch"):
-		return true
+	# Disabled for now
+	# if Input.is_action_pressed("crouch"):
+	# 	return true
 	return false
 
 func get_new_upper_animation(is_shooting, is_reloading):
@@ -21,12 +22,15 @@ func get_new_upper_animation(is_shooting, is_reloading):
 		return "shoot"
 	if is_reloading:
 		return "reload"
+	if velocity.y > 0.0:
+			return "fall"
 	if velocity.x != 0.0:
 			return "walk"
 	return "idle" # By default return the idle animation
 	
 func get_new_lower_animation():
 	if is_on_floor():
+		# Disable for now
 		# if Input.is_action_pressed("crouch"):
 		#	if velocity.x != 0.0:
 		#		return "crouch_walk"
