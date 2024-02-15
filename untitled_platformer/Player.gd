@@ -59,11 +59,9 @@ func _physics_process(delta):
 	# Flip sprite if moving left
 	if velocity.x < 0:
 		$UpperBody.scale.x = -1.0
-		$UpperBody.position.x = 9 # Make upper body "snap" to lower body
 		$LowerBody.scale.x = -1.0
 	elif velocity.x > 0:
 		$UpperBody.scale.x = 1.0
-		$UpperBody.position.x = 3 # Make upper body "snap" to lower body
 		$LowerBody.scale.x = 1.0
 	
 	if is_crouching(): # Player should move at half speed if crouched

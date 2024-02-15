@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bh1ng7g7y3qmd"]
+[gd_scene load_steps=23 format=3 uid="uid://bh1ng7g7y3qmd"]
 
 [ext_resource type="Texture2D" uid="uid://dwpc85aqd62wa" path="res://assets/art/player_upper_body.png" id="2_mt2rg"]
 [ext_resource type="Script" path="res://Player.gd" id="3"]
@@ -20,6 +20,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [11]
+}
+
+[sub_resource type="Animation" id="Animation_agr4i"]
+resource_name = "fall"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpperBody:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
 }
 
 [sub_resource type="Animation" id="Animation_h7ro3"]
@@ -69,8 +85,8 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 
-[sub_resource type="Animation" id="Animation_agr4i"]
-resource_name = "fall"
+[sub_resource type="Animation" id="Animation_yj77x"]
+resource_name = "shoot"
 length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -79,10 +95,10 @@ tracks/0/path = NodePath("UpperBody:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
+"values": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1jd1q"]
@@ -91,6 +107,7 @@ _data = {
 "fall": SubResource("Animation_agr4i"),
 "idle": SubResource("Animation_h7ro3"),
 "reload": SubResource("Animation_gg56i"),
+"shoot": SubResource("Animation_yj77x"),
 "walk": SubResource("Animation_pc6wr")
 }
 
@@ -213,7 +230,7 @@ script = ExtResource("3")
 [node name="UpperBody" type="Sprite2D" parent="."]
 visibility_layer = 2
 z_index = 1
-position = Vector2(5, 12)
+position = Vector2(14, 0)
 texture = ExtResource("2_mt2rg")
 hframes = 12
 vframes = 5
@@ -221,7 +238,7 @@ frame = 11
 script = ExtResource("3_m16nj")
 
 [node name="Gun" type="Marker2D" parent="UpperBody"]
-position = Vector2(15, -6)
+position = Vector2(15, 4)
 script = ExtResource("3_hg62v")
 
 [node name="CooldownTimer" type="Timer" parent="UpperBody/Gun"]
@@ -243,7 +260,7 @@ wait_time = 0.4
 one_shot = true
 
 [node name="LowerBody" type="Sprite2D" parent="."]
-position = Vector2(7, 11)
+position = Vector2(11, 11)
 texture = ExtResource("4_5yjn1")
 hframes = 12
 vframes = 4
