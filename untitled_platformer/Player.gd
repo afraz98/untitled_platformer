@@ -101,8 +101,7 @@ func _physics_process(delta):
 		velocity.y = -JUMP_SPEED
 	
 	if velocity.x != 0:
-		print("Player moved!")
-		emit_signal("player_moved", $UpperBody.position.x)
+		emit_signal("player_moved", self.position.x)
 
 	var is_shooting := false
 	if Input.is_action_just_pressed("shoot"):
