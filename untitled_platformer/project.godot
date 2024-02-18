@@ -14,7 +14,7 @@ config/name="guun"
 config/tags=PackedStringArray("2d", "physics", "platformer", "tilemap")
 run/main_scene="res://SinglePlayerGame.tscn"
 config/features=PackedStringArray("4.2")
-config/icon="res://icon.png"
+config/icon="res://assets/art/logo.png"
 
 [display]
 

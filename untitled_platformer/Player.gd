@@ -11,6 +11,8 @@ const JUMP_SPEED = 250
 
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+signal player_moved(x: int)
+
 func is_crouching():
 	# Disabled for now
 	# if Input.is_action_pressed("crouch"):
@@ -30,11 +32,6 @@ func get_new_upper_animation(is_shooting, is_reloading):
 	
 func get_new_lower_animation():
 	if is_on_floor():
-		# Disable for now
-		# if Input.is_action_pressed("crouch"):
-		#	if velocity.x != 0.0:
-		#		return "crouch_walk"
-		#	return "crouch"
 		if velocity.x != 0.0:
 			return "walk"
 		return "idle"
@@ -58,9 +55,11 @@ func update_hitbox():
 func _physics_process(delta):
 	# Flip sprite if moving left
 	if velocity.x < 0:
+		$UpperBody.position.x = 7 # Is there a better way to do this?
 		$UpperBody.scale.x = -1.0
 		$LowerBody.scale.x = -1.0
 	elif velocity.x > 0:
+		$UpperBody.position.x = 14 # Is there a better way to do this?
 		$UpperBody.scale.x = 1.0
 		$LowerBody.scale.x = 1.0
 	
@@ -100,6 +99,10 @@ func _physics_process(delta):
 	# Check for jumping. is_on_floor() must be called after movement code.
 	if is_on_floor() and Input.is_action_just_pressed(&"jump"):
 		velocity.y = -JUMP_SPEED
+	
+	if velocity.x != 0:
+		print("Player moved!")
+		emit_signal("player_moved", $UpperBody.position.x)
 
 	var is_shooting := false
 	if Input.is_action_just_pressed("shoot"):
@@ -111,6 +114,7 @@ func _physics_process(delta):
 	
 	$UpperBody.play_animation(get_new_upper_animation(is_shooting, is_reloading), is_shooting, is_reloading)
 	$LowerBody.play_animation(get_new_lower_animation())
+	
 	update_hitbox()
 
 

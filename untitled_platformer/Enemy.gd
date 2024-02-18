@@ -25,7 +25,7 @@ var walking_direction = 0
 var initial_position_x = 0
 var _state := STATE.PATROLLING
 
-enum STATE { IDLE, PATROLLING, DEAD }
+enum STATE { IDLE, PATROLLING, DEAD, SEARCHING }
 
 func get_new_animation():
 	if _state == STATE.PATROLLING:
