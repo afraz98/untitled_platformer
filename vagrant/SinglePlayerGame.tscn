@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://5ora3ps30sup"]
+[gd_scene load_steps=8 format=3 uid="uid://5ora3ps30sup"]
 
 [ext_resource type="PackedScene" uid="uid://c2mrdlb84o3iq" path="res://Level.tscn" id="1_18bub"]
 [ext_resource type="Script" path="res://SinglePlayerGame.gd" id="1_ef1cg"]
 [ext_resource type="PackedScene" uid="uid://bh1ng7g7y3qmd" path="res://Player.tscn" id="2_5eaev"]
 [ext_resource type="PackedScene" uid="uid://g7ayr7v4c634" path="res://HidingEnemy.tscn" id="3_m4v1q"]
 [ext_resource type="PackedScene" uid="uid://dunjy4eo2cmth" path="res://Tree.tscn" id="4_lhqig"]
+[ext_resource type="PackedScene" uid="uid://b1juj3awjyouw" path="res://Trunk.tscn" id="6_ai78t"]
+[ext_resource type="PackedScene" uid="uid://ctbr1bi1hvdgb" path="res://PauseMenu.tscn" id="7_0kjgt"]
 
 [node name="SinglePlayerGame" type="Node"]
 script = ExtResource("1_ef1cg")
@@ -19,3 +21,8 @@ position = Vector2(605, 444)
 
 [node name="Tree" parent="." instance=ExtResource("4_lhqig")]
 position = Vector2(590, 431)
+
+[node name="Node2D" parent="." instance=ExtResource("6_ai78t")]
+position = Vector2(535, 421)
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_0kjgt")]

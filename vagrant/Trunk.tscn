@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1juj3awjyouw"]
+
+[ext_resource type="Texture2D" uid="uid://3r8uppkjqnw2" path="res://assets/art/scenery.png" id="1_077et"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ollya"]
+radius = 5.26863
+height = 70.7104
+
+[node name="Node2D" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_077et")
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+rotation = 1.07189
+shape = SubResource("CapsuleShape2D_ollya")
