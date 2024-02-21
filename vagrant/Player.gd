@@ -10,7 +10,6 @@ const STOP_FORCE = 1300
 const JUMP_SPEED = 250 
 
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 signal player_moved(x: int)
 
 func is_crouching():

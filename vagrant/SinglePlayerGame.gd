@@ -1,29 +1,22 @@
 extends Node
 
 var enemies := []
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	enemies.append($HidingEnemy)
-	
-	get_node("Player").player_moved.connect(_on_player_moved)
-	get_node("HidingEnemy").enemy_killed.connect(_on_enemy_killed)
-	
-func _on_player_moved(pos_x):
-	for enemy in enemies:
-		enemy.update_player_position(pos_x)
-		
-func _on_enemy_killed(enemy):
-	enemies[0].queue_free()
-	enemies.remove_at(0)
-	pass
+@onready var pause_menu = $InterfaceLayer/PauseMenu as PauseMenu
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"fullscreen"):
+		var mode := DisplayServer.window_get_mode()
+		if mode == DisplayServer.WINDOW_MODE_FULLSCREEN or mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		get_tree().root.set_input_as_handled()
+
 	if event.is_action_pressed(&"pause"):
 		var tree := get_tree()
 		tree.paused = not tree.paused
 		if tree.paused:
-			$PauseMenu.open()
+			pause_menu.open()
 		else:
-			$PauseMenu.close()
+			pause_menu.close()
 		get_tree().root.set_input_as_handled()
