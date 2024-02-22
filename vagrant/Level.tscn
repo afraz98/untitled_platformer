@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2mrdlb84o3iq"]
+[gd_scene load_steps=10 format=3 uid="uid://c2mrdlb84o3iq"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_kyvmd"]
 [ext_resource type="Texture2D" uid="uid://cbkwyfib16805" path="res://assets/art/tile_sheet.png" id="2_xte3l"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bh1ng7g7y3qmd" path="res://Player.tscn" id="4_aa5pj"]
 [ext_resource type="PackedScene" uid="uid://dunjy4eo2cmth" path="res://Tree.tscn" id="5_mhi7n"]
 [ext_resource type="PackedScene" uid="uid://b1juj3awjyouw" path="res://Trunk.tscn" id="6_8crg3"]
+[ext_resource type="PackedScene" uid="uid://buns24plh2ymf" path="res://Skybox.tscn" id="7_1lcbt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oamw5"]
 texture = ExtResource("2_xte3l")
@@ -200,3 +201,5 @@ position = Vector2(592, 432)
 
 [node name="Trunk" parent="." instance=ExtResource("6_8crg3")]
 position = Vector2(545, 416)
+
+[node name="Skybox" parent="." instance=ExtResource("7_1lcbt")]

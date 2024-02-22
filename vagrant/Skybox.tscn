@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://buns24plh2ymf"]
+
+[ext_resource type="Texture2D" uid="uid://cvsejcpos3x8p" path="res://assets/countryside-tileset/country-platform-files/layers/country-platform-back.png" id="1_20jhi"]
+[ext_resource type="Texture2D" uid="uid://bx421mm1cy2ai" path="res://assets/countryside-tileset/country-platform-files/layers/country-platform-forest.png" id="2_rj60a"]
+
+[node name="Skybox" type="ParallaxBackground"]
+scroll_base_scale = Vector2(0.4, 0)
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+position = Vector2(192, 112)
+
+[node name="Mountains1" type="Sprite2D" parent="Sky"]
+texture = ExtResource("1_20jhi")
+
+[node name="Mountains2" type="Sprite2D" parent="Sky"]
+position = Vector2(384, 0)
+texture = ExtResource("1_20jhi")
+
+[node name="Treeline" type="ParallaxLayer" parent="."]
+position = Vector2(192, 112)
+
+[node name="Trees1" type="Sprite2D" parent="Treeline"]
+position = Vector2(-112, 0)
+texture = ExtResource("2_rj60a")
+
+[node name="Trees2" type="Sprite2D" parent="Treeline"]
+position = Vector2(48, 0)
+texture = ExtResource("2_rj60a")
+
+[node name="Trees3" type="Sprite2D" parent="Treeline"]
+position = Vector2(208, 0)
+texture = ExtResource("2_rj60a")
+
+[node name="Trees4" type="Sprite2D" parent="Treeline"]
+position = Vector2(368, 0)
+texture = ExtResource("2_rj60a")
+
+[node name="Trees5" type="Sprite2D" parent="Treeline"]
+position = Vector2(528, 0)
+texture = ExtResource("2_rj60a")

@@ -99,7 +99,7 @@ script = ExtResource("1_hms80")
 [node name="StationaryEnemySprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_fcyj0")
 hframes = 12
-vframes = 7
+vframes = 5
 frame = 27
 
 [node name="EnemyHitbox" type="CollisionShape2D" parent="."]
