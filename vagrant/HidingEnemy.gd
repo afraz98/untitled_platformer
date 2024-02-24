@@ -1,7 +1,5 @@
 class_name HidingEnemy extends Enemy
 
-signal enemy_killed(enemy)
-
 var player_position: int = 0;
 
 func get_new_animation():
@@ -29,9 +27,6 @@ func check_player_proximity():
 	if _state != STATE.DEAD:
 		if(self.position.x - player_position) <= 50:
 			_state = STATE.FLEEING
-	
-func kill_enemy():
-	enemy_killed.emit(self)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

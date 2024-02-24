@@ -1,7 +1,30 @@
 extends Node
 
 var enemies := []
-@onready var pause_menu = $InterfaceLayer/PauseMenu as PauseMenu
+@onready var pause_menu = $PauseMenuLayer/PauseMenu as PauseMenu
+@onready var user_interface = $UserInterfaceLayer/UserInterface
+@onready var player = $Level/Player as Player
+
+var current_ammo_count: int = 10
+var total_ammo_count: int = 10
+
+func set_ammo_count():
+	user_interface.set_ammo_count(current_ammo_count, total_ammo_count)
+	pass
+
+func _ready():
+	set_ammo_count()
+	player.gun_shot.connect(_on_player_gun_shot)
+	player.player_reloaded.connect(_on_player_reload)
+	
+func _on_player_gun_shot():
+	current_ammo_count -= 1
+	set_ammo_count()
+	pass
+	
+func _on_player_reload():
+	current_ammo_count = 10
+	set_ammo_count()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"fullscreen"):

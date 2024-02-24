@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://wxissxabqqi2"]
+
+[ext_resource type="FontFile" uid="uid://dtjq52do060hx" path="res://assets/fonts/kenney_mini_square.ttf" id="1_ff4p4"]
+[ext_resource type="Script" path="res://UserInterface.gd" id="1_kh8ja"]
+
+[node name="UserInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kh8ja")
+
+[node name="UserInterfacePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 670.0
+offset_top = 455.0
+offset_right = 720.0
+offset_bottom = 480.0
+
+[node name="AmmoLabel" type="Label" parent="UserInterfacePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_ff4p4")
+text = "10/10"

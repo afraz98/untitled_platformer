@@ -217,7 +217,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1ujr"]
-size = Vector2(40, 43)
+size = Vector2(41, 41)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7sjv"]
 size = Vector2(33, 25)
@@ -272,7 +272,7 @@ libraries = {
 }
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(7, 4.5)
+position = Vector2(7.5, 3.5)
 shape = SubResource("RectangleShape2D_s1ujr")
 
 [node name="PlayerCrouchHitbox" type="CollisionShape2D" parent="."]

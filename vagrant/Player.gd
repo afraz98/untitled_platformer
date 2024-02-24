@@ -10,12 +10,12 @@ const STOP_FORCE = 1300
 const JUMP_SPEED = 250 
 
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
 signal player_moved(x: int)
+signal gun_shot()
+signal player_reloaded()
 
 func is_crouching():
-	# Disabled for now
-	# if Input.is_action_pressed("crouch"):
-	# 	return true
 	return false
 
 func get_new_upper_animation(is_shooting, is_reloading):
@@ -105,10 +105,14 @@ func _physics_process(delta):
 	var is_shooting := false
 	if Input.is_action_just_pressed("shoot"):
 		is_shooting = $UpperBody.get_node(^"Gun").shoot($UpperBody.scale.x)
-
+		if is_shooting:
+			gun_shot.emit()
+	
 	var is_reloading := false
 	if Input.is_action_just_pressed("reload"):
 		is_reloading = $UpperBody.get_node(^"Gun").reload()
+		if is_reloading:
+			player_reloaded.emit()
 	
 	$UpperBody.play_animation(get_new_upper_animation(is_shooting, is_reloading), is_shooting, is_reloading)
 	$LowerBody.play_animation(get_new_lower_animation())

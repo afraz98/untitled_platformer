@@ -3,6 +3,8 @@ class_name Enemy extends CharacterBody2D
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var _animation_player = $AnimationPlayer
 
+signal enemy_killed(enemy)
+
 # Acceleration for walking
 const WALK_FORCE = 600
 
@@ -43,6 +45,9 @@ func destroy() -> void:
 	_state = STATE.DEAD
 	self.set_collision_mask_value(2, false)
 	self.set_collision_mask_value(3, false)
+	
+func kill_enemy():
+	enemy_killed.emit(self)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
