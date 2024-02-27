@@ -4,9 +4,9 @@ func destroy() -> void:
 	$AnimationPlayer.play(&"destroy")
 	
 func _on_body_entered(body: Node) -> void:
-	if body is Enemy:
-		if !(body as Enemy).is_dead():
-			(body as Enemy).destroy()
+	if body is CharacterBody2D:
+		if !(body as CharacterBody2D).is_dead():
+			(body as CharacterBody2D).destroy()
 	destroy()
 
 

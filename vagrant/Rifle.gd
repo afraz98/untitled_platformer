@@ -1,14 +1,14 @@
-class_name Gun extends Marker2D
+class_name Rifle extends Marker2D
 
 const Bullet = preload("res://Bullet.tscn")
-const BULLET_VELOCITY = 500.0
+const BULLET_VELOCITY = 1000.0
 
 # Maximum ammo capacity for the pistol
-const PISTOL_MAGAZINE_CAPACITY = 10
-var ammo := 0
+const RIFLE_MAGAZINE_CAPACITY = 1
+var ammo: int = 0
 
 func _ready():
-	ammo = PISTOL_MAGAZINE_CAPACITY
+	ammo = RIFLE_MAGAZINE_CAPACITY
 	pass
 
 func reload() -> bool:
@@ -16,7 +16,7 @@ func reload() -> bool:
 		# In the middle of a reload already -- cannot reload.
 		return false
 	$ReloadTimer.start()
-	ammo = PISTOL_MAGAZINE_CAPACITY
+	ammo = RIFLE_MAGAZINE_CAPACITY
 	return true
 
 func shoot(direction: float) -> bool:

@@ -51,6 +51,15 @@ func update_hitbox():
 		$PlayerCrouchHitbox.disabled = true
 	pass
 
+func is_dead():
+	return false
+
+func destroy() -> void:
+	print("Player dead!")
+	velocity = Vector2.ZERO
+	self.set_collision_mask_value(2, false)
+	self.set_collision_mask_value(3, false)
+	
 func _physics_process(delta):
 	# Flip sprite if moving left
 	if velocity.x < 0:
