@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://cg0wgoxrc4lev"]
+
+[ext_resource type="Texture2D" uid="uid://d1rb7xe0x37ue" path="res://assets/art/fire.png" id="1_fr0xf"]
+[ext_resource type="Script" path="res://Fire.gd" id="1_qnu72"]
+
+[sub_resource type="Animation" id="Animation_upkli"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_115p8"]
+resource_name = "idle"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hy2d4"]
+_data = {
+"RESET": SubResource("Animation_upkli"),
+"idle": SubResource("Animation_115p8")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jk6x3"]
+size = Vector2(32, 8)
+
+[node name="Fire" type="RigidBody2D"]
+script = ExtResource("1_qnu72")
+
+[node name="FireSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_fr0xf")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hy2d4")
+}
+
+[node name="FireHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_jk6x3")

@@ -37,6 +37,7 @@ func shoot(direction: float) -> bool:
 		
 	bullet.global_position = global_position
 	bullet.linear_velocity = Vector2(direction * BULLET_VELOCITY, 0.0)
+	bullet.scale.x = direction
 	
 	bullet.set_as_top_level(true)
 	add_child(bullet)

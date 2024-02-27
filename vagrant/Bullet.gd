@@ -2,13 +2,11 @@ class_name Bullet extends RigidBody2D
 
 func destroy() -> void:
 	$AnimationPlayer.play(&"destroy")
-	queue_free()
-
+	
 func _on_body_entered(body: Node) -> void:
 	if body is Enemy:
-		(body as Enemy).destroy()
-	
-	# The bullet should be destroyed on collision
+		if !(body as Enemy).is_dead():
+			(body as Enemy).destroy()
 	destroy()
 
 

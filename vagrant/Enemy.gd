@@ -4,6 +4,7 @@ class_name Enemy extends CharacterBody2D
 @onready var _animation_player = $AnimationPlayer
 
 signal enemy_killed(enemy)
+var player_position: int = 0;
 
 # Acceleration for walking
 const WALK_FORCE = 600
@@ -27,7 +28,7 @@ var walking_direction = 0
 var initial_position_x = 0
 var _state := STATE.PATROLLING
 
-enum STATE { IDLE, PATROLLING, DEAD, SEARCHING, FLEEING }
+enum STATE { IDLE, PATROLLING, DEAD, SEARCHING, FLEEING, FIRING, STANDING }
 
 func get_new_animation():
 	if _state == STATE.PATROLLING:
@@ -46,9 +47,18 @@ func destroy() -> void:
 	self.set_collision_mask_value(2, false)
 	self.set_collision_mask_value(3, false)
 	
+func is_dead():
+	return _state == STATE.DEAD
+	
 func kill_enemy():
 	enemy_killed.emit(self)
-	
+
+func update_player_position(pos_x):
+	player_position = pos_x
+		
+func check_player_proximity():
+	pass
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if not $FloorDetectorLeft.is_colliding():

@@ -21,7 +21,7 @@ func _physics_process(delta):
 		$StationaryEnemySprite.flip_h = velocity.x > 0
 
 	# Clamp to the maximum horizontal movement speed.
-	# velocity.x = clamp(velocity.x, -WALK_MAX_SPEED, WALK_MAX_SPEED)
+	velocity.x = clamp(velocity.x, -WALK_MAX_SPEED, WALK_MAX_SPEED)
 
 	# Vertical movement code. Apply gravity.
 	velocity.y += gravity * delta

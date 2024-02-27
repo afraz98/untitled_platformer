@@ -242,7 +242,7 @@ position = Vector2(15, 4)
 script = ExtResource("3_hg62v")
 
 [node name="CooldownTimer" type="Timer" parent="UpperBody/Gun"]
-wait_time = 0.4
+wait_time = 0.2
 one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="UpperBody/Gun"]
@@ -256,7 +256,7 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="UpperBody"]
-wait_time = 0.4
+wait_time = 0.2
 one_shot = true
 
 [node name="LowerBody" type="Sprite2D" parent="."]
@@ -283,5 +283,5 @@ shape = SubResource("RectangleShape2D_v7sjv")
 zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
-limit_right = 1000
+limit_right = 1500
 limit_bottom = 480

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5nb7kswu7gnd"
-path="res://.godot/imported/bullet.png-2c7ba26ddbc560ce1efdc1dd98291e68.ctex"
+uid="uid://cx5886nehbamp"
+path="res://.godot/imported/rifleman.png-b6aba8fafef12c65218f8215ebb4594b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-2c7ba26ddbc560ce1efdc1dd98291e68.ctex"]
+source_file="res://assets/art/rifleman.png"
+dest_files=["res://.godot/imported/rifleman.png-b6aba8fafef12c65218f8215ebb4594b.ctex"]
 
 [params]
 
