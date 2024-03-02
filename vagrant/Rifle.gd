@@ -16,8 +16,14 @@ func reload() -> bool:
 		# In the middle of a reload already -- cannot reload.
 		return false
 	$ReloadTimer.start()
-	ammo = RIFLE_MAGAZINE_CAPACITY
 	return true
+
+func _reload_finished():
+	$ReloadTimer.stop()
+	ammo = RIFLE_MAGAZINE_CAPACITY
+
+func is_empty() -> bool:
+	return ammo == 0
 
 func shoot(direction: float) -> bool:
 	if ammo == 0:
@@ -32,7 +38,7 @@ func shoot(direction: float) -> bool:
 	if not $ReloadTimer.is_stopped():
 		# In the middle of reloading -- should not be able to shoot.
 		return false
-	
+
 	var bullet := Bullet.instantiate() as Bullet
 		
 	bullet.global_position = global_position

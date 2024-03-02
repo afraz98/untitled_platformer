@@ -3,14 +3,18 @@ class_name Rifleman extends Enemy
 var is_standing: bool = false
 
 func get_new_animation():
+	if is_dead():
+		return "death"
 	if _state == STATE.IDLE:
 		return "idle"
-	elif _state == STATE.FIRING: 
+	elif _state == STATE.ALERT:
 		if !is_standing:
 			return "stand"
-		return "shoot"
-	return "death"
-
+		if $Rifle.shoot(-$RiflemanSprite.scale.x):
+			return "shoot"
+		if $Rifle.is_empty():
+			return "reload"
+	
 func _enemy_is_standing():
 	is_standing = true
 	
@@ -20,13 +24,10 @@ func _ready():
 	_state = STATE.IDLE
 	pass
 
-func shoot():
-	get_node(^"Rifle").shoot(-$RiflemanSprite.scale.x)
-
 func check_player_proximity():
 	if _state != STATE.DEAD:
 		if(self.position.x - player_position) <= 150:
-			_state = STATE.FIRING
+			_state = STATE.ALERT
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -48,11 +49,8 @@ func _physics_process(delta):
 	
 	# Handle player proximity	
 	check_player_proximity()
-
-	if is_standing:
-		shoot()
 		
 	var animation = get_new_animation()
-	if animation != _animation_player.current_animation:
+	if animation != null and animation != _animation_player.current_animation:
 		_animation_player.play(animation)
 	pass

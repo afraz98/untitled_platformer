@@ -28,7 +28,7 @@ var walking_direction = 0
 var initial_position_x = 0
 var _state := STATE.PATROLLING
 
-enum STATE { IDLE, PATROLLING, DEAD, SEARCHING, FLEEING, FIRING, STANDING }
+enum STATE { IDLE, PATROLLING, DEAD, SEARCHING, FLEEING, ALERT, CHEER }
 
 func get_new_animation():
 	if _state == STATE.PATROLLING:
@@ -49,6 +49,9 @@ func destroy() -> void:
 	
 func is_dead():
 	return _state == STATE.DEAD
+	
+func _on_player_death():
+	_state == STATE.IDLE
 	
 func kill_enemy():
 	enemy_killed.emit(self)

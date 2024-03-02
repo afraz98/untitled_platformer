@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bh1ng7g7y3qmd"]
+[gd_scene load_steps=28 format=3 uid="uid://bh1ng7g7y3qmd"]
 
 [ext_resource type="Texture2D" uid="uid://dwpc85aqd62wa" path="res://assets/art/player_upper_body.png" id="2_mt2rg"]
 [ext_resource type="Script" path="res://Player.gd" id="3"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://UpperBody.gd" id="3_m16nj"]
 [ext_resource type="Texture2D" uid="uid://dvdo073rl2oph" path="res://assets/art/player_lower_body.png" id="4_5yjn1"]
 [ext_resource type="Script" path="res://LowerBody.gd" id="6_j5tdd"]
+[ext_resource type="Texture2D" uid="uid://joccar787siy" path="res://assets/art/player_death_animation.png" id="7_0730b"]
+[ext_resource type="Script" path="res://FullBody.gd" id="8_jpxey"]
 
 [sub_resource type="Animation" id="Animation_yj4f2"]
 length = 0.001
@@ -217,10 +219,47 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1ujr"]
-size = Vector2(41, 41)
+size = Vector2(34, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7sjv"]
 size = Vector2(33, 25)
+
+[sub_resource type="Animation" id="Animation_ok502"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gd3g3"]
+resource_name = "death"
+length = 1.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_et48l"]
+_data = {
+"RESET": SubResource("Animation_ok502"),
+"death": SubResource("Animation_gd3g3")
+}
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-1, -4)
@@ -238,7 +277,7 @@ frame = 11
 script = ExtResource("3_m16nj")
 
 [node name="Gun" type="Marker2D" parent="UpperBody"]
-position = Vector2(15, 4)
+position = Vector2(19, 4)
 script = ExtResource("3_hg62v")
 
 [node name="CooldownTimer" type="Timer" parent="UpperBody/Gun"]
@@ -272,7 +311,7 @@ libraries = {
 }
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(7.5, 3.5)
+position = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_s1ujr")
 
 [node name="PlayerCrouchHitbox" type="CollisionShape2D" parent="."]
@@ -285,3 +324,15 @@ limit_left = 0
 limit_top = 0
 limit_right = 1500
 limit_bottom = 480
+
+[node name="FullBody" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(11, 6)
+texture = ExtResource("7_0730b")
+hframes = 19
+script = ExtResource("8_jpxey")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FullBody"]
+libraries = {
+"": SubResource("AnimationLibrary_et48l")
+}
