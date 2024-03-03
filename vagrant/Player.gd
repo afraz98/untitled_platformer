@@ -56,19 +56,17 @@ func update_hitbox():
 func is_dead():
 	return is_alive == false
 
+func _player_killed() -> void:		
+	# Disable collision	
+	self.set_collision_mask_value(2, false)
+	self.set_collision_mask_value(3, false)
+
 func destroy() -> void:
-	# Stop player movement
-	velocity.x = 0
-	
 	# Switch to full-body sprite
 	$UpperBody.set_visible(false)
 	$LowerBody.set_visible(false)
 	$FullBody.set_visible(true)
 	
-	# Disable collision	
-	self.set_collision_mask_value(2, false)
-	self.set_collision_mask_value(3, false)
-
 	$FullBody.play_animation("death")
 	is_alive = false
 	player_dead.emit()
@@ -91,7 +89,6 @@ func _physics_process(delta):
 		if is_crouching(): # Player should move at half speed if crouched
 			# Horizontal movement code. First, get the player's input.
 			var walk = CROUCH_FORCE * (Input.get_axis(&"move_left", &"move_right"))
-			
 			
 			# Slow down the player if they're not trying to move.
 			if abs(walk) < CROUCH_FORCE * 0.2:

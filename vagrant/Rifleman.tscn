@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Rifle.gd" id="3_iarlw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw302"]
-size = Vector2(32, 29)
+size = Vector2(32, 26.5)
 
 [sub_resource type="Animation" id="Animation_o7jno"]
 length = 0.001
@@ -154,7 +154,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swm30"]
-size = Vector2(18, 34)
+size = Vector2(17, 37)
 
 [node name="Rifleman" type="CharacterBody2D"]
 collision_layer = 3
@@ -166,7 +166,7 @@ hframes = 12
 vframes = 4
 
 [node name="RiflemanCrouchingHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, 6.75)
 shape = SubResource("RectangleShape2D_mw302")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -175,7 +175,7 @@ libraries = {
 }
 
 [node name="RiflemanStandingHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(8, 0)
+position = Vector2(7.5, 1.5)
 shape = SubResource("RectangleShape2D_swm30")
 
 [node name="Timer" type="Timer" parent="."]

@@ -3,10 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://bg7ebqwj2ioem" path="res://assets/art/cover.png" id="1_0cy6g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulfqu"]
-size = Vector2(26, 10)
+size = Vector2(24, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0uej3"]
-size = Vector2(16, 26)
+size = Vector2(16, 19)
 
 [node name="Cover" type="RigidBody2D"]
 
@@ -14,9 +14,9 @@ size = Vector2(16, 26)
 texture = ExtResource("1_0cy6g")
 
 [node name="BoxCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-13, 21)
+position = Vector2(-10, 19.5)
 shape = SubResource("RectangleShape2D_ulfqu")
 
 [node name="SandbagCollision" type="CollisionShape2D" parent="."]
-position = Vector2(8, 13)
+position = Vector2(10, 15.5)
 shape = SubResource("RectangleShape2D_0uej3")

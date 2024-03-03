@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cg0wgoxrc4lev"]
+[gd_scene load_steps=8 format=3 uid="uid://cg0wgoxrc4lev"]
 
 [ext_resource type="Texture2D" uid="uid://d1rb7xe0x37ue" path="res://assets/art/fire.png" id="1_fr0xf"]
 [ext_resource type="Script" path="res://Fire.gd" id="1_qnu72"]
+[ext_resource type="PackedScene" uid="uid://d0epmppqomvv5" path="res://FireEffect.tscn" id="3_r5p4v"]
 
 [sub_resource type="Animation" id="Animation_upkli"]
 length = 0.001
@@ -41,7 +42,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk6x3"]
-size = Vector2(32, 8)
+size = Vector2(31, 5)
 
 [node name="Fire" type="RigidBody2D"]
 script = ExtResource("1_qnu72")
@@ -56,5 +57,14 @@ libraries = {
 }
 
 [node name="FireHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 20)
+position = Vector2(0.5, 22.5)
 shape = SubResource("RectangleShape2D_jk6x3")
+
+[node name="FireEffect" parent="." instance=ExtResource("3_r5p4v")]
+position = Vector2(0, 21)
+
+[node name="FireEffect2" parent="." instance=ExtResource("3_r5p4v")]
+position = Vector2(3, 20)
+
+[node name="FireEffect3" parent="." instance=ExtResource("3_r5p4v")]
+position = Vector2(-4, 20)

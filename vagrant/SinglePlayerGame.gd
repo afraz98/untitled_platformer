@@ -4,6 +4,7 @@ var enemies := []
 @onready var pause_menu = $PauseMenuLayer/PauseMenu as PauseMenu
 @onready var user_interface = $UserInterfaceLayer/UserInterface
 @onready var player = $Level/Player as Player
+@onready var level = $Level
 
 var current_ammo_count: int = 10
 var total_ammo_count: int = 10
@@ -16,8 +17,8 @@ func _ready():
 	set_ammo_count()
 	player.gun_shot.connect(_on_player_gun_shot)
 	player.player_reloaded.connect(_on_player_reload)
-	player.player_dead.connect(_on_player_death)
-		
+	level.game_over.connect(game_over)
+
 func _on_player_gun_shot():
 	current_ammo_count -= 1
 	set_ammo_count()
@@ -27,12 +28,6 @@ func _on_player_reload():
 	current_ammo_count = 10
 	set_ammo_count()
 
-func _on_player_death():
-	for enemy in enemies:
-		enemy._on_player_death()
-	game_over()
-	pass
-	
 func game_over():
 	print("Game over!")
 	pass

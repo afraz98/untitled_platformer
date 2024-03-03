@@ -7,6 +7,8 @@ extends Node2D
 @onready var stationary_enemy_2 = $StationaryEnemy2 as StationaryEnemy
 @onready var rifleman = $Rifleman as Rifleman
 
+signal game_over()
+
 var enemies := []
 
 func _ready():
@@ -14,10 +16,17 @@ func _ready():
 	enemies.append(stationary_enemy)
 	enemies.append(stationary_enemy_2)
 	enemies.append(rifleman)
-		
+
+	player.player_dead.connect(_on_player_death)
 	player.player_moved.connect(_on_player_moved)
 	for enemy in enemies:
 		enemy.enemy_killed.connect(_on_enemy_killed)
+
+func _on_player_death():
+	for enemy in enemies:
+		enemy._on_player_death()
+	game_over.emit()
+	pass
 
 func _on_player_moved(pos_x: int):
 	for enemy in enemies:

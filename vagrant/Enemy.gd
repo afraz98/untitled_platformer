@@ -51,6 +51,7 @@ func is_dead():
 	return _state == STATE.DEAD
 	
 func _on_player_death():
+	print("Setting state to IDLE")
 	_state == STATE.IDLE
 	
 func kill_enemy():
