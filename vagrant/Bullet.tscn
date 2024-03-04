@@ -70,7 +70,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgbh2"]
-size = Vector2(9.5, 4)
+size = Vector2(8, 3)
 
 [node name="Bullet" type="RigidBody2D"]
 collision_layer = 0
@@ -92,7 +92,7 @@ texture = ExtResource("2_ps07o")
 hframes = 2
 
 [node name="BulletHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
+position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_rgbh2")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

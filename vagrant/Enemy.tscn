@@ -1,13 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6e2cnn8ir5lp"]
+[gd_scene load_steps=10 format=3 uid="uid://c6e2cnn8ir5lp"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1_8l3b1"]
 [ext_resource type="Texture2D" uid="uid://b3qu6uja7se0f" path="res://assets/art/enemy.png" id="2_ut1px"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln5xc"]
 height = 36.0
-
-[sub_resource type="Animation" id="Animation_dqbfu"]
-resource_name = "IDLE"
 
 [sub_resource type="Animation" id="Animation_0ql4q"]
 length = 0.001
@@ -82,11 +79,44 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 
+[sub_resource type="Animation" id="Animation_x4veg"]
+resource_name = "idle"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89]
+}
+
+[sub_resource type="Animation" id="Animation_xdocf"]
+resource_name = "fear"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rrcx4"]
 _data = {
-"IDLE": SubResource("Animation_dqbfu"),
 "RESET": SubResource("Animation_0ql4q"),
 "death": SubResource("Animation_4of7m"),
+"fear": SubResource("Animation_xdocf"),
+"idle": SubResource("Animation_x4veg"),
 "walk": SubResource("Animation_5u4hm")
 }
 
@@ -99,7 +129,7 @@ script = ExtResource("1_8l3b1")
 [node name="EnemySprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_ut1px")
 hframes = 12
-vframes = 6
+vframes = 8
 
 [node name="EnemyHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(4, -1)

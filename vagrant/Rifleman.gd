@@ -1,13 +1,14 @@
 class_name Rifleman extends Enemy
 
 var is_standing: bool = false
+var player_dead: bool = false
 
 func get_new_animation():
 	if is_dead():
 		return "death"
 	if _state == STATE.IDLE:
 		return "idle"
-	elif _state == STATE.ALERT:
+	elif _state >= STATE.ALERT:
 		if !is_standing:
 			return "stand"
 		if $Rifle.shoot(-$RiflemanSprite.scale.x):
@@ -17,6 +18,10 @@ func get_new_animation():
 	
 func _enemy_is_standing():
 	is_standing = true
+
+func _on_player_death():
+	player_dead = true
+	_state = STATE.IDLE
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,8 +30,8 @@ func _ready():
 	pass
 
 func check_player_proximity():
-	if _state != STATE.DEAD:
-		if(self.position.x - player_position) <= 150:
+	if !self.is_dead():
+		if(self.position.x - player_position) <= 150 and !player_dead:
 			_state = STATE.ALERT
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

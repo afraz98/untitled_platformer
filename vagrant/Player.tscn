@@ -281,7 +281,6 @@ collision_layer = 4
 script = ExtResource("3")
 
 [node name="UpperBody" type="Sprite2D" parent="."]
-visibility_layer = 2
 z_index = 1
 position = Vector2(14, 0)
 texture = ExtResource("2_mt2rg")

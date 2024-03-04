@@ -45,6 +45,7 @@ _data = {
 size = Vector2(31, 5)
 
 [node name="Fire" type="RigidBody2D"]
+collision_mask = 7
 script = ExtResource("1_qnu72")
 
 [node name="FireSprite" type="Sprite2D" parent="."]

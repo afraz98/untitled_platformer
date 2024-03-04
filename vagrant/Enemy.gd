@@ -28,7 +28,7 @@ var walking_direction = 0
 var initial_position_x = 0
 var _state := STATE.PATROLLING
 
-enum STATE { IDLE, PATROLLING, DEAD, SEARCHING, FLEEING, ALERT, CHEER }
+enum STATE { IDLE, PATROLLING, DEAD, SEARCHING, FEAR, FLEEING, ALERT, CHEER }
 
 func get_new_animation():
 	if _state == STATE.PATROLLING:
@@ -36,11 +36,15 @@ func get_new_animation():
 	return "death"
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	_state = STATE.PATROLLING
 	velocity.x = -WALK_MAX_SPEED
 	pass
 
+func _flee():
+	_state = STATE.FLEEING
+	get_new_animation()
+	
 func destroy() -> void:
 	velocity = Vector2.ZERO
 	_state = STATE.DEAD
@@ -50,8 +54,10 @@ func destroy() -> void:
 func is_dead():
 	return _state == STATE.DEAD
 	
+func _enemy_died_nearby(enemy: Enemy):
+	pass
+	
 func _on_player_death():
-	print("Setting state to IDLE")
 	_state == STATE.IDLE
 	
 func kill_enemy():

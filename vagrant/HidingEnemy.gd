@@ -5,20 +5,22 @@ func get_new_animation():
 		return "idle"
 	elif _state == STATE.SEARCHING:
 		return "search"
+	elif _state == STATE.FEAR:
+		return "fear"
 	elif _state == STATE.FLEEING:
 		return "flee"
 	return "death"
+
+func check_player_proximity():
+	if !is_dead():
+		if(self.position.x - player_position) <= 50 and _state < STATE.FEAR:
+			_state = STATE.FEAR	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	walking_direction = -1.0
 	_state = STATE.SEARCHING
 	pass
-
-func check_player_proximity():
-	if _state != STATE.DEAD:
-		if(self.position.x - player_position) <= 50:
-			_state = STATE.FLEEING	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
