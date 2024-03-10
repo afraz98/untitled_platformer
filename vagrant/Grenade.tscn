@@ -47,7 +47,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"queue_free"
+"method": &"explode"
 }]
 }
 
@@ -96,5 +96,8 @@ shape = SubResource("RectangleShape2D_bhdrx")
 libraries = {
 "": SubResource("AnimationLibrary_c16h0")
 }
+
+[node name="Fuse" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
