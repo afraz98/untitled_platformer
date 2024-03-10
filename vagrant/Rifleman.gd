@@ -34,7 +34,6 @@ func check_player_proximity():
 		if(self.position.x - player_position) <= 150 and !player_dead:
 			_state = STATE.ALERT
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if is_on_wall():
 		velocity.x = -velocity.x

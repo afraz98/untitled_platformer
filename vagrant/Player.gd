@@ -10,7 +10,7 @@ const STOP_FORCE = 1300
 const JUMP_SPEED = 250 
 
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var is_alive: bool = true;
+var is_alive: bool = true
 
 signal player_moved(x: int)
 signal gun_shot()
@@ -20,11 +20,13 @@ signal player_dead()
 func is_crouching():
 	return false
 
-func get_new_upper_animation(is_shooting, is_reloading):
+func get_new_upper_animation(is_shooting, is_reloading, is_throwing):
 	if is_shooting:
 		return "shoot"
 	if is_reloading:
 		return "reload"
+	if is_throwing:
+		return "throw"
 	if velocity.y > 0.0:
 			return "fall"
 	if velocity.x != 0.0:
@@ -56,8 +58,9 @@ func update_hitbox():
 func is_dead():
 	return is_alive == false
 
-func _player_killed() -> void:		
-	pass
+func _player_killed() -> void:
+	velocity = Vector2.ZERO
+	is_alive = false
 	
 func destroy() -> void:
 	# Disable collision	
@@ -70,7 +73,7 @@ func destroy() -> void:
 	$FullBody.set_visible(true)
 	
 	$FullBody.play_animation("death")
-	is_alive = false
+	var is_alive = false
 	player_dead.emit()
 
 func _ready():
@@ -130,20 +133,26 @@ func _physics_process(delta):
 		emit_signal("player_moved", self.position.x)
 
 	var is_shooting := false
-	if Input.is_action_just_pressed("shoot") and !is_dead():
-		is_shooting = $UpperBody.get_node(^"Gun").shoot($UpperBody.scale.x)
-		if is_shooting:
-			gun_shot.emit()
-	
 	var is_reloading := false
-	if Input.is_action_just_pressed("reload") and !is_dead():
-		is_reloading = $UpperBody.get_node(^"Gun").reload()
-		if is_reloading:
-			player_reloaded.emit()
+	var is_throwing := false
 	
-	$UpperBody.play_animation(get_new_upper_animation(is_shooting, is_reloading), is_shooting, is_reloading)
-	$LowerBody.play_animation(get_new_lower_animation())
+	if !self.is_dead():
+		if Input.is_action_just_pressed("shoot"):
+			is_shooting = $UpperBody.get_node(^"Gun").shoot($UpperBody.scale.x)
+			if is_shooting:
+				gun_shot.emit()
+		
+		if Input.is_action_just_pressed("throw"):
+			is_throwing = $UpperBody.get_node(^"GrenadeThrower").throw_grenade($UpperBody.scale.x)
+			pass
+		
+		if Input.is_action_just_pressed("reload"):
+			is_reloading = $UpperBody.get_node(^"Gun").reload()
+			if is_reloading:
+				player_reloaded.emit()
 	
+	$UpperBody.play_animation(get_new_upper_animation(is_shooting, is_reloading, is_throwing), is_shooting, is_reloading, is_throwing)
+	$LowerBody.play_animation(get_new_lower_animation())	
 	update_hitbox()
 
 

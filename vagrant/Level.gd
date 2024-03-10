@@ -1,4 +1,4 @@
-extends Node2D
+class_name Level extends Node2D
 
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var player = $Player as Player
@@ -32,7 +32,7 @@ func _on_player_moved(pos_x: int):
 	for enemy in enemies:
 		enemy.update_player_position(pos_x)
 
-func broadcast_death(dead_enemy: Enemy): 
+func broadcast_death(dead_enemy: Enemy):
 	# Broadcast a death to all actors on the level
 	for enemy in enemies:
 		enemy._enemy_died_nearby(dead_enemy)
@@ -40,6 +40,5 @@ func broadcast_death(dead_enemy: Enemy):
 
 func _on_enemy_killed(enemy: Enemy):
 	broadcast_death(enemy)
-	enemy.queue_free()
 	enemies.erase(enemy)
 	pass

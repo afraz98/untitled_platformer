@@ -36,6 +36,7 @@ func shoot(direction: float) -> bool:
 	var bullet := Bullet.instantiate() as Bullet
 		
 	bullet.global_position = global_position
+	bullet.initial_position = global_position.x
 	bullet.linear_velocity = Vector2(direction * BULLET_VELOCITY, 0.0)
 	bullet.scale.x = direction
 	

@@ -43,28 +43,15 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.2, 2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"kill_enemy"
+"method": &"broadcast_death"
+}, {
+"args": [],
+"method": &"queue_free"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_wi1rl"]
-resource_name = "idle"
-length = 9.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StationaryEnemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 3, 3.1, 3.2, 3.3, 6, 6.1, 6.2, 6.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [50, 52, 53, 57, 56, 55, 54, 58, 59, 60, 61]
 }
 
 [sub_resource type="Animation" id="Animation_mtiqg"]
@@ -111,6 +98,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]
+}
+
+[sub_resource type="Animation" id="Animation_wi1rl"]
+resource_name = "idle"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StationaryEnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 3, 3.1, 3.2, 3.3, 6, 6.1, 6.2, 6.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [50, 52, 53, 57, 56, 55, 54, 58, 59, 60, 61]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ohkos"]

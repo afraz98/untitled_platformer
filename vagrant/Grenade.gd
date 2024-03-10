@@ -1,16 +1,13 @@
-class_name Bullet extends RigidBody2D
+class_name Grenade extends RigidBody2D
 
-var initial_position: int = 0
-
+func play_animation(animation):
+	$AnimationPlayer.play(animation)
+	
 func destroy() -> void:
-	$AnimationPlayer.play(&"destroy")
+	play_animation("destroy")
 
-func ready() -> void:
-	initial_position = self.position.x
-		
 func _on_body_entered(body: Node) -> void:
 	if body is CharacterBody2D:
 		if !(body as CharacterBody2D).is_dead():
 			(body as CharacterBody2D).destroy()
 	destroy()
-

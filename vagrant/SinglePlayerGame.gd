@@ -1,4 +1,4 @@
-extends Node
+class_name SinglePlayerGame extends Node
 
 var enemies := []
 @onready var pause_menu = $PauseMenuLayer/PauseMenu as PauseMenu

@@ -1,10 +1,4 @@
-extends Sprite2D
-
-func _ready():
-	pass
-
-func _process(delta):
-	pass
+class_name FullBody extends Sprite2D
 
 func play_animation(animation):
 	$AnimationPlayer.play(animation)

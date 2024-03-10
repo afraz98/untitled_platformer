@@ -55,16 +55,19 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"broadcast_death"
+}, {
 "args": [],
 "method": &"queue_free"
 }]
 }
 
-[sub_resource type="Animation" id="Animation_5u4hm"]
-resource_name = "walk"
+[sub_resource type="Animation" id="Animation_xdocf"]
+resource_name = "fear"
 length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -76,7 +79,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+"values": [66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77]
 }
 
 [sub_resource type="Animation" id="Animation_x4veg"]
@@ -95,8 +98,8 @@ tracks/0/keys = {
 "values": [78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89]
 }
 
-[sub_resource type="Animation" id="Animation_xdocf"]
-resource_name = "fear"
+[sub_resource type="Animation" id="Animation_5u4hm"]
+resource_name = "walk"
 length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -108,7 +111,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rrcx4"]

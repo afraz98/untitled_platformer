@@ -10,8 +10,9 @@ func get_new_animation():
 	return "death"
 
 func _enemy_died_nearby(enemy: Enemy):
-	if !self.is_dead() and _state < STATE.FEAR:
-		_state = STATE.FEAR
+	if !self.is_dead(): 
+		if abs(enemy.position.x - self.position.x) < 100 and _state < STATE.FEAR:
+			_state = STATE.FEAR
 	pass
 
 # Called when the node enters the scene tree for the first time.

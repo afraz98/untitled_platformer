@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ddbfirqiyuk30"]
+
+[node name="Explosion" type="RigidBody2D"]
+
+[node name="ExplosionSprite" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

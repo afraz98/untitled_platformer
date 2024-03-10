@@ -60,7 +60,7 @@ func _enemy_died_nearby(enemy: Enemy):
 func _on_player_death():
 	_state == STATE.IDLE
 	
-func kill_enemy():
+func broadcast_death():
 	enemy_killed.emit(self)
 
 func update_player_position(pos_x):
@@ -69,7 +69,6 @@ func update_player_position(pos_x):
 func check_player_proximity():
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if not $FloorDetectorLeft.is_colliding():
 		velocity.x = -WALK_MAX_SPEED
